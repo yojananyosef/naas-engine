@@ -14,6 +14,7 @@ It transforms subjective visual hierarchy into a **measurable mathematical prope
 
 - [Core Concept: The CDV](#core-concept-the-cdv)
 - [Installation & Usage](#installation--usage)
+- [AI Integration (Skills)](#ai-integration-skills)
 - [AI-Native Integration](#ai-native-integration)
 - [Testing & Research](#testing--research)
 - [Structure](#structure)
@@ -53,6 +54,17 @@ const engine = new NAASEngine({
 });
 engine.start();
 ```
+
+---
+
+## 🤖 AI Integration (Skills)
+
+You can install NAAS as a skill for your AI agents (Cursor, Claude, Devin) using [skills.sh](https://skills.sh):
+
+```bash
+npx skills add https://github.com/yojananyosef/naas-engine --skill naas-cognitive
+```
+
 ---
 
 ## 🧠 AI-Native Integration (skills.sh)
@@ -75,24 +87,9 @@ This repository includes a SKILL.md file. It allows AI agents (Cursor, Claude, D
 
 ## 📂 Structure
 
-```text
-naas-engine/              # project root
-├─ demo/                  # interactive demos
-│  ├─ basic-violation.html
-│  ├─ passing-case.html
-│  └─ competing-ctas.html
-├─ scripts/               # utilities
-│  └─ sample-size.js
-├─ naas-engine.js         # core library
-├─ naas-worker.js         # contrast calculation worker
-├─ naas.spec.js           # end‑to‑end tests
-├─ package.json
-├─ README.md
-└─ LICENSE
-```
-/demo: Standard, Competing CTAs, and Passing Case scenarios.  
-/scripts: Statistical utilities for A/B testing (sample-size.js).  
-naas-engine.js: Core observer and evaluator.  
+/demo: Standard, Competing CTAs, and Passing Case scenarios.
+/scripts: Statistical utilities for A/B testing (sample-size.js).
+naas-engine.js: Core observer and evaluator.
 naas-worker.js: Off-main-thread contrast computation.
 
 ---
