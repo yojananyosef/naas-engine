@@ -1,20 +1,29 @@
 # NAAS Engine
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-0.1.0-orange.svg)
 
-NAAS (Neuro-Adaptive Attention System) is a runtime engine that enforces a cognitive dominance invariant in conversion-focused interfaces.
+**Status:** Experimental Research Release
 
-It transforms visual hierarchy into a measurable and verifiable mathematical property.
+NAAS (Neuro-Adaptive Attention System) is a runtime engine that enforces a
+cognitive dominance invariant in conversion-focused interfaces.
+
+It transforms visual hierarchy into a measurable and verifiable mathematical
+property.
+
+---
 
 ## 📋 Contents
 
 - [Core Concept](#core-concept)
+- [Invariant Definition](#invariant-definition)
 - [Why?](#why)
 - [Installation](#installation)
-- [Markup Convention](#markup-convention)
-- [Worker Support](#worker-support)
+- [Usage](#usage)
 - [Runtime Output](#runtime-output)
-- [Demo](#demo)
+- [Repo Structure](#repo-structure)
+- [Demo Scenarios](#demo-scenarios)
+- [Testing & Reproducibility](#testing--reproducibility)
 - [Intended Scope](#intended-scope)
 - [License](#license)
 
@@ -26,15 +35,32 @@ Each actionable element is evaluated through a **Cognitive Dominance Vector (CDV
 
 ```text
 CDV = w1·Contrast + w2·Surface + w3·Typography
+
+Where:
+
+Contrast → WCAG contrast ratio (1–21)
+Surface  → Rendered pixel area
+Typography → fontSize × fontWeight
 ```
 
-> **Invariant:** the primary CTA must maintain the highest CDV within the current viewport.
+### Invariant Definition
+
+The primary CTA must maintain the highest CDV within the current viewport.
+
+Formally:
+
+```
+CDV_primary > max(CDV_others) + δ
+```
+
+Where **δ** is a configurable dominance threshold (see `deltaThreshold`).
 
 ---
 
 ## Why?
 
-Design systems enforce style consistency. NAAS enforces cognitive hierarchy consistency.
+Design systems enforce visual consistency. NAAS enforces cognitive hierarchy
+consistency.
 
 This prevents:
 
@@ -42,12 +68,17 @@ This prevents:
 - Accidental dominance shifts
 - Hierarchy drift during layout changes
 - Accessibility regressions
+- Conversion‑critical ambiguity
 
 ---
 
 ## Installation
 
-Include the engine in your bundle:
+```bash
+npm install
+```
+
+Import the engine:
 
 ```js
 import { NAASEngine } from './naas-engine.js';
@@ -58,9 +89,9 @@ engine.start();
 
 ---
 
-## Markup Convention
+## Usage
 
-Use data attributes to annotate CTAs:
+Annotate actionable elements:
 
 ```html
 <button data-aida="action" data-cta="primary">
@@ -68,16 +99,14 @@ Use data attributes to annotate CTAs:
 </button>
 ```
 
----
-
-## Worker Support
-
-By default, NAAS uses a Web Worker to calculate WCAG contrast off the main thread.
-
-Disable it if you prefer:
+Configuration options:
 
 ```js
-new NAASEngine({ useWorker: false });
+new NAASEngine({
+  weights: [0.4, 0.4, 0.2],
+  deltaThreshold: 0.05,
+  useWorker: true
+});
 ```
 
 ---
@@ -103,9 +132,55 @@ Example result:
 
 ---
 
-## Demo
+## Repo Structure
 
-Open `demo/index.html` in your browser or deploy directly via GitHub Pages.
+```text
+naas-engine/              # project root
+├─ demo/                  # interactive demos
+│  ├─ basic-violation.html
+│  ├─ passing-case.html
+│  └─ competing-ctas.html
+├─ scripts/               # utilities
+│  └─ sample-size.js
+├─ naas-engine.js         # core library
+├─ naas-worker.js         # contrast calculation worker
+├─ naas.spec.js           # end‑to‑end tests
+├─ package.json
+├─ README.md
+└─ LICENSE
+```
+
+---
+
+## Demo Scenarios
+
+The `demo/` folder now contains three independent examples:
+
+- `basic-violation.html` → two equal CTAs (invariant fails)
+- `passing-case.html` → proper dominance hierarchy (invariant holds)
+- `competing-ctas.html` → dominance drift detection
+
+Each page exercises a different facet of the algorithm.
+
+---
+
+## Testing & Reproducibility
+
+```bash
+npm install
+npm test
+```
+
+E2E tests use Playwright; unit tests (and future additions) verify:
+
+- WCAG contrast computation
+- Typography normalization
+- CDV weighted calculation
+- Invariant threshold logic
+
+Pure mathematical utilities are exported so any third party can deterministically
+reproduce results. The invariant is therefore testable outside of browser context
+—critical for research credibility.
 
 ---
 
@@ -116,10 +191,11 @@ Open `demo/index.html` in your browser or deploy directly via GitHub Pages.
 | Landing pages                | Dashboards de contenido pesado      |
 | Checkout funnels             | Sistemas de datos exploratorios     |
 | SaaS onboarding flows        | Experiencias editoriales largas     |
-| Conversion-critical interfaces |                                   |
+| Conversion‑critical interfaces |                                     |
 
 ---
 
 ## License
 
-This project is released under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE).
+
