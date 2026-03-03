@@ -3,34 +3,74 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>NAAS Demo</title>
+    <title>NAAS v3.4 - Standard Demo</title>
     <link rel="stylesheet" href="../naas-core.css" />
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        /* El Dashboard ya no activará el MutationObserver del motor */
+        #naas-dashboard {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px;
+            border: 2px solid #000;
+            background: #fff;
+            border-radius: 8px;
+            font-family: monospace;
+            z-index: 9999;
+        }
+    </style>
 </head>
 
 <body>
 
-    <section data-aida="attention">
-        <h1>Upgrade Your Workflow</h1>
-    </section>
+    <main class="container">
+        <header data-aida="attention">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Design with Math.</h1>
+        </header>
 
-    <section data-aida="desire">
-        <button data-aida="action" data-cta="secondary">
-            Learn More
-        </button>
-    </section>
+        <section data-aida="interest" style="margin-bottom: 3rem;">
+            <p style="font-size: 1.2rem; color: #666;">
+                Ensuring your Primary CTA always wins the battle for attention.
+            </p>
+        </section>
 
-    <section data-aida="action">
-        <button data-aida="action" data-cta="primary">
-            Start Free Trial
-        </button>
-    </section>
+        <nav data-aida="desire" style="display: flex; gap: 20px; justify-content: center;">
+            <button data-aida="action" data-cta="secondary">Documentation</button>
+            <button data-aida="action" data-cta="primary">Start Free Trial</button>
+        </nav>
+    </main>
+
+    <!-- Visual Dashboard (Fuera de etiquetas de acción) -->
+    <div id="naas-dashboard">Iniciando Engine...</div>
 
     <script type="module">
         import { NAASEngine } from '../naas-engine.js';
-        const engine = new NAASEngine();
+        const dashboard = document.getElementById('naas-dashboard');
+
+        const engine = new NAASEngine({
+            deltaThreshold: 0.05,
+            onEvaluate: r => {
+                // Actualizamos el dashboard sin disparar el bucle
+                dashboard.innerHTML = `
+                    <div style="color: ${r.invariantHolds ? 'green' : 'red'}; font-weight: bold;">
+                        Status: ${r.invariantHolds ? 'PASSED' : 'VIOLATION'}
+                    </div>
+                    <hr>
+                    CDV Primary: ${r.primary.toFixed(3)}<br>
+                    CDV Others: ${r.maxOther.toFixed(3)}<br>
+                    Margin: ${r.margin.toFixed(3)}
+                `;
+                dashboard.style.borderColor = r.invariantHolds ? 'green' : 'red';
+            }
+        });
         engine.start();
     </script>
-
 </body>
 
 </html>

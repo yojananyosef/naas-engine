@@ -5,7 +5,7 @@ import {
     invariantHoldsPure
 } from '../naas-engine.js';
 
-describe("NAAS Unit Tests", () => {
+describe("NAAS v3.4 Mathematical Core", () => {
 
     test("contrastRatioPure black/white should be ~21", () => {
         const ratio = contrastRatioPure(

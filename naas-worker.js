@@ -1,46 +1,43 @@
-// naas-worker.js
+self.addEventListener('message', (e) => {
+    const { id, fg, bg } = e.data;
+    try {
+        const ratio = computeContrastRatio(fg, bg);
+        self.postMessage({ id, contrast: ratio });
+    } catch (err) {
+        self.postMessage({ id, error: String(err) });
+    }
+});
 
-function parseRGB(str) {
-    if (!str) return [255, 255, 255];
+function parseColor(input) {
+    if (!input) return [255, 255, 255];
+    const str = input.trim();
 
-    const nums = str.match(/\d+(\.\d+)?/g);
-    if (!nums) return [255, 255, 255];
+    // Extrae los números de rgb(0,0,0) o rgba(0,0,0,1)
+    const m = str.match(/\d+/g);
+    if (m && m.length >= 3) {
+        return [parseInt(m[0]), parseInt(m[1]), parseInt(m[2])];
+    }
 
-    return nums.slice(0, 3).map(Number);
-}
-
-function toLinear(v) {
-    v /= 255;
-    return v <= 0.03928
-        ? v / 12.92
-        : Math.pow((v + 0.055) / 1.055, 2.4);
+    return [255, 255, 255]; // fallback a blanco si no detecta bien
 }
 
 function luminance(rgb) {
-    return (
-        0.2126 * toLinear(rgb[0]) +
-        0.7152 * toLinear(rgb[1]) +
-        0.0722 * toLinear(rgb[2])
-    );
+    const a = rgb.map((v) => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-function contrastRatio(fg, bg) {
-    const L1 = luminance(parseRGB(fg));
-    const L2 = luminance(parseRGB(bg));
+function computeContrastRatio(fgStr, bgStr) {
+    const fg = parseColor(fgStr);
+    const bg = parseColor(bgStr);
 
-    const lighter = Math.max(L1, L2);
-    const darker = Math.min(L1, L2);
+    const l1 = luminance(fg);
+    const l2 = luminance(bg);
+
+    const lighter = Math.max(l1, l2);
+    const darker = Math.min(l1, l2);
 
     return (lighter + 0.05) / (darker + 0.05);
 }
-
-self.onmessage = e => {
-    const { id, fg, bg } = e.data;
-
-    const contrast = contrastRatio(fg, bg);
-
-    self.postMessage({
-        id,
-        contrast
-    });
-};

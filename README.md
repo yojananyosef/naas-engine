@@ -1,138 +1,79 @@
-# NAAS Engine
+﻿# NAAS Engine v3.4.0
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.1.0-orange.svg)
+![Version](https://img.shields.io/badge/version-3.4.0-yellow.svg)
+![Aesthetic](https://img.shields.io/badge/aesthetic-Vector--Minimalism-black.svg)
 
-**Status:** Experimental Research Release
+**NAAS (Neuro-Adaptive Attention System)** is a high-performance runtime engine that enforces cognitive dominance invariants in conversion-critical interfaces.
 
-NAAS (Neuro-Adaptive Attention System) is a runtime engine that enforces a
-cognitive dominance invariant in conversion-focused interfaces.
-
-It transforms visual hierarchy into a measurable and verifiable mathematical
-property.
+It transforms subjective visual hierarchy into a **measurable mathematical property** using the Cognitive Dominance Vector (CDV).
 
 ---
 
 ## 📋 Contents
 
-- [Core Concept](#core-concept)
-- [Invariant Definition](#invariant-definition)
-- [Why?](#why)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Runtime Output](#runtime-output)
-- [Repo Structure](#repo-structure)
+- [Core Concept: The CDV](#core-concept-the-cdv)
+- [Installation & Usage](#installation--usage)
+- [AI-Native Integration](#ai-native-integration)
+- [Testing & Research](#testing--research)
+- [Structure](#structure)
 - [Demo Scenarios](#demo-scenarios)
-- [Testing & Reproducibility](#testing--reproducibility)
-- [Intended Scope](#intended-scope)
 - [License](#license)
 
 ---
 
-## Core Concept
+## 🚀 Core Concept: The CDV
 
-Each actionable element is evaluated through a **Cognitive Dominance Vector (CDV)**:
+Each actionable element is evaluated in real-time:
 
 ```text
 CDV = w1·Contrast + w2·Surface + w3·Typography
-
-Where:
-
-Contrast → WCAG contrast ratio (1–21)
-Surface  → Rendered pixel area
-Typography → fontSize × fontWeight
 ```
 
-### Invariant Definition
+### The Absolute Invariant
 
-The primary CTA must maintain the highest CDV within the current viewport.
+The primary CTA must maintain the highest CDV within the viewport:
 
-Formally:
-
-```
-CDV_primary > max(CDV_others) + δ
-```
-
-Where **δ** is a configurable dominance threshold (see `deltaThreshold`).
+**CDV_primary > max(CDV_others) + δ**
 
 ---
 
-## Why?
-
-Design systems enforce visual consistency. NAAS enforces cognitive hierarchy
-consistency.
-
-This prevents:
-
-- Competing CTAs
-- Accidental dominance shifts
-- Hierarchy drift during layout changes
-- Accessibility regressions
-- Conversion‑critical ambiguity
-
----
-
-## Installation
+## 🛠️ Installation & Usage
 
 ```bash
 npm install
 ```
 
-Import the engine:
-
 ```js
 import { NAASEngine } from './naas-engine.js';
 
-const engine = new NAASEngine();
+const engine = new NAASEngine({
+  weights: [0.4, 0.4, 0.2], // Contrast, Surface, Typography
+  deltaThreshold: 0.05
+});
 engine.start();
 ```
+---
+
+## 🧠 AI-Native Integration (skills.sh)
+
+This repository includes a SKILL.md file. It allows AI agents (Cursor, Claude, Devin) to:
+
+- Understand the AIDA structural roles.
+- Implement the Vector-Minimalism aesthetic automatically.
+- Respect the mathematical invariants during code generation.
 
 ---
 
-## Usage
+## 🧪 Testing & Research
 
-Annotate actionable elements:
-
-```html
-<button data-aida="action" data-cta="primary">
-  Start Free Trial
-</button>
-```
-
-Configuration options:
-
-```js
-new NAASEngine({
-  weights: [0.4, 0.4, 0.2],
-  deltaThreshold: 0.05,
-  useWorker: true
-});
-```
+- **Unit Tests**: `npm test` (Verifies math and WCAG logic).
+- **E2E Tests**: `npm run test:e2e` (Verifies runtime invariant holds).
+- **Experimental Plan**: See experiment-plan.md for weight calibration.
 
 ---
 
-## Runtime Output
-
-The engine exposes a global evaluation object:
-
-```js
-window.__NAAS_EVAL__
-```
-
-Example result:
-
-```json
-{
-  "primary": 0.82,
-  "maxOther": 0.61,
-  "margin": 0.21,
-  "invariantHolds": true
-}
-```
-
----
-
-## Repo Structure
+## 📂 Structure
 
 ```text
 naas-engine/              # project root
@@ -149,16 +90,20 @@ naas-engine/              # project root
 ├─ README.md
 └─ LICENSE
 ```
+/demo: Standard, Competing CTAs, and Passing Case scenarios.  
+/scripts: Statistical utilities for A/B testing (sample-size.js).  
+naas-engine.js: Core observer and evaluator.  
+naas-worker.js: Off-main-thread contrast computation.
 
 ---
 
 ## Demo Scenarios
 
-The `demo/` folder now contains three independent examples:
+The demo/ folder now contains three independent examples:
 
-- `basic-violation.html` → two equal CTAs (invariant fails)
-- `passing-case.html` → proper dominance hierarchy (invariant holds)
-- `competing-ctas.html` → dominance drift detection
+- basic-violation.html → two equal CTAs (invariant fails)
+- passing-case.html → proper dominance hierarchy (invariant holds)
+- competing-ctas.html → dominance drift detection
 
 Each page exercises a different facet of the algorithm.
 
@@ -174,38 +119,6 @@ These URLs are useful for testing the engine in a live environment without cloni
 
 ---
 
-## Testing & Reproducibility
-
-```bash
-npm install
-npm test
-```
-
-E2E tests use Playwright; unit tests (and future additions) verify:
-
-- WCAG contrast computation
-- Typography normalization
-- CDV weighted calculation
-- Invariant threshold logic
-
-Pure mathematical utilities are exported so any third party can deterministically
-reproduce results. The invariant is therefore testable outside of browser context
-—critical for research credibility.
-
----
-
-## Intended Scope
-
-| Diseñado para                 | No destinado a                      |
-|------------------------------|-------------------------------------|
-| Landing pages                | Dashboards de contenido pesado      |
-| Checkout funnels             | Sistemas de datos exploratorios     |
-| SaaS onboarding flows        | Experiencias editoriales largas     |
-| Conversion‑critical interfaces |                                     |
-
----
-
 ## License
 
 Released under the [MIT License](LICENSE).
-

@@ -1,16 +1,16 @@
-# NAAS Experimental Plan
+# NAAS Experimental Plan v3.4
 
 ## Objective
-Calibrate CDV weights to maximize Conversion Rate.
+Calibrate CDV weights specifically for the **Vector-Minimalism** design system to maximize CVR.
 
 ## Hypothesis
 H0: Weight variation does not affect CVR.
 H1: Adjusted weights increase CVR.
 
 ## Variants
-A: [0.4,0.4,0.2]
-B: [0.6,0.2,0.2]
-C: [0.2,0.6,0.2]
+- **Control (A):** Standard weights [0.4, 0.4, 0.2]
+- **Contrast Dominant (B):** [0.6, 0.2, 0.2] - Focuses on color intensity.
+- **Surface Dominant (C):** [0.2, 0.6, 0.2] - Focuses on button size.
 
 ## KPI
 - Conversion Rate

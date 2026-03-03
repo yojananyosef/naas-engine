@@ -1,36 +1,65 @@
+/* NAAS v3.4 VECTOR-MINIMALISM */
 :root {
-    --bg-canvas: #FFFDF5;
-    --text-main: #121212;
-    --intent-action: #FFDE59;
-    --intent-attention: #8850FF;
-    --border-main: 3px solid #000;
-    --shadow-hard: 4px 4px 0 #000;
+    --bg-canvas: #FAFAFA;
+    --text-main: #0A0A0A;
+    --intent-action: #FFD600;
+    /* Amarillo de alta conversión */
+    --intent-attention: #4F46E5;
+
+    --border-main: 2px solid var(--text-main);
+    --shadow-hard: 3px 3px 0 var(--text-main);
+
+    --radius: 8px;
     --transition-fast: 150ms ease-out;
 }
 
 body {
     background: var(--bg-canvas);
     color: var(--text-main);
-    font-family: system-ui;
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
 }
 
+/* ACTION BASE (Todos los botones) */
 [data-aida="action"] {
     border: var(--border-main);
     box-shadow: var(--shadow-hard);
-    transition: var(--transition-fast);
+    border-radius: var(--radius);
+    transition: transform var(--transition-fast);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* EL REY: Primary CTA (Garantiza CDV más alto) */
 [data-cta="primary"] {
     background: var(--intent-action);
     font-weight: 700;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
 }
 
+/* Secondary CTA */
 [data-cta="secondary"] {
     background: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
 }
 
+/* FÍSICA (Hover behavior) */
+[data-aida="action"]:hover {
+    transform: translateY(-2px);
+}
+
+[data-aida="action"]:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0 var(--text-main);
+}
+
+/* ACCESIBILIDAD */
 [data-aida="action"]:focus-visible {
-    outline: 3px solid #000;
+    outline: 3px solid var(--intent-attention);
     outline-offset: 2px;
 }
