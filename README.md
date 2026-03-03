@@ -162,6 +162,16 @@ The `demo/` folder now contains three independent examples:
 
 Each page exercises a different facet of the algorithm.
 
+### 🔗 Live GitHub Pages Demos
+
+You can also explore the scenarios on GitHub Pages:
+
+- [Basic violation demo](https://yojananyosef.github.io/naas-engine/demo/basic-violation.html)
+- [Passing case demo](https://yojananyosef.github.io/naas-engine/demo/passing-case.html)
+- [Competing CTAs demo](https://yojananyosef.github.io/naas-engine/demo/competing-ctas.html)
+
+These URLs are useful for testing the engine in a live environment without cloning the repo.
+
 ---
 
 ## Testing & Reproducibility
