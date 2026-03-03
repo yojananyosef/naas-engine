@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>NAAS – Competing CTAs</title>
+    <link rel="stylesheet" href="../naas-core.css" />
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+        }
+
+        button {
+            margin: 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[data-cta="primary"] {
+            background: #111;
+            color: white;
+            padding: 14px 22px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        button[data-cta="secondary"] {
+            background: #ddd;
+            color: black;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+
+        /* Este compite y rompe el invariant */
+        .danger-cta {
+            background: red;
+            color: white;
+            padding: 20px 30px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Choose Your Plan</h1>
+
+    <button data-aida="action" data-cta="secondary">
+        Learn More
+    </button>
+
+    <button data-aida="action" data-cta="primary">
+        Start Free Trial
+    </button>
+
+    <button data-aida="action" class="danger-cta">
+        Limited Time Offer
+    </button>
+
+    <script type="module">
+        import { NAASEngine } from '../naas-engine.js';
+
+        const engine = new NAASEngine({
+            onEvaluate: r => {
+                console.log("COMPETING CTAS:", r);
+            }
+        });
+
+        engine.start();
+    </script>
+
+</body>
+
+</html>

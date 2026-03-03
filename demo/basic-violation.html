@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>NAAS Demo</title>
+    <link rel="stylesheet" href="../naas-core.css" />
+</head>
+
+<body>
+
+    <section data-aida="attention">
+        <h1>Upgrade Your Workflow</h1>
+    </section>
+
+    <section data-aida="desire">
+        <button data-aida="action" data-cta="secondary">
+            Learn More
+        </button>
+    </section>
+
+    <section data-aida="action">
+        <button data-aida="action" data-cta="primary">
+            Start Free Trial
+        </button>
+    </section>
+
+    <script type="module">
+        import { NAASEngine } from '../naas-engine.js';
+        const engine = new NAASEngine();
+        engine.start();
+    </script>
+
+</body>
+
+</html>

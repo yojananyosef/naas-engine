@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>NAAS – Passing Case</title>
+    <link rel="stylesheet" href="../naas-core.css" />
+    <style>
+        button[data-cta="primary"] {
+            background: black;
+            color: white;
+            font-weight: 700;
+            padding: 18px 28px;
+            font-size: 18px;
+        }
+
+        button[data-cta="secondary"] {
+            background: #eee;
+            color: black;
+            padding: 10px 14px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Upgrade Your Workflow</h1>
+
+    <button data-aida="action" data-cta="secondary">
+        Learn More
+    </button>
+
+    <button data-aida="action" data-cta="primary">
+        Start Free Trial
+    </button>
+
+    <script type="module">
+        import { NAASEngine } from '../naas-engine.js';
+
+        const engine = new NAASEngine({
+            onEvaluate: r => console.log("PASSING CASE:", r)
+        });
+
+        engine.start();
+    </script>
+
+</body>
+
+</html>

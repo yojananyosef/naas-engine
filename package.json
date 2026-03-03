@@ -1,0 +1,29 @@
+{
+    "name": "naas-engine",
+    "version": "0.1.0",
+    "description": "Neuro-Adaptive Attention System (NAAS) runtime engine enforcing CTA dominance invariants.",
+    "type": "module",
+    "main": "naas-engine.js",
+    "exports": {
+        ".": "./naas-engine.js"
+    },
+    "scripts": {
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+        "test:e2e": "playwright test",
+        "power": "node scripts/sample-size.js"
+    },
+    "keywords": [
+        "design-systems",
+        "ux",
+        "conversion",
+        "attention",
+        "wcag",
+        "cognitive"
+    ],
+    "author": "Johan Gutierrez",
+    "license": "MIT",
+    "devDependencies": {
+        "@playwright/test": "^1.42.0",
+        "jest": "^29.7.0"
+    }
+}

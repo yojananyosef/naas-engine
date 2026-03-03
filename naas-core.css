@@ -1,0 +1,36 @@
+:root {
+    --bg-canvas: #FFFDF5;
+    --text-main: #121212;
+    --intent-action: #FFDE59;
+    --intent-attention: #8850FF;
+    --border-main: 3px solid #000;
+    --shadow-hard: 4px 4px 0 #000;
+    --transition-fast: 150ms ease-out;
+}
+
+body {
+    background: var(--bg-canvas);
+    color: var(--text-main);
+    font-family: system-ui;
+}
+
+[data-aida="action"] {
+    border: var(--border-main);
+    box-shadow: var(--shadow-hard);
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+[data-cta="primary"] {
+    background: var(--intent-action);
+    font-weight: 700;
+}
+
+[data-cta="secondary"] {
+    background: white;
+}
+
+[data-aida="action"]:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+}
