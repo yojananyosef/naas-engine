@@ -1,14 +1,18 @@
-# naas-cognitive
-This skill enforces the Neo-AIDA Accessible System (NAAS v3.4) for vectorized UI dominance and conversion-grade interfaces.
+---
+name: naas-cognitive
+description: Enforces the Neo-AIDA Accessible System (NAAS v3.4) for vectorized UI dominance and high-conversion interfaces using mathematical cognitive invariants.
+---
 
-$ npx skills add https://github.com/yojananyosef/naas-engine --skill naas-cognitive
+# NAAS Cognitive Engine & Vector-Minimalism Design
+
+This skill enforces the **Neo-AIDA Accessible System (NAAS v3.4)**. It guides the creation of high-conversion interfaces using the **Vectorized Dominance Paradigm** and a **Vector-Minimalism** aesthetic.
 
 ## When to Use This Skill
-Use this skill when the user needs to:
-- Design high-conversion landing pages or checkout funnels.
-- Ensure a primary CTA has mathematical dominance over other elements.
-- Implement the "Vector-Minimalism" aesthetic (2px borders, 3px hard shadows).
-- Apply the AIDA (Attention, Interest, Desire, Action) cognitive framework.
+Use this skill when the user:
+- Asks to design a high-conversion landing page or checkout funnel.
+- Needs to ensure a Primary CTA has mathematical dominance over other elements.
+- Wants to implement the "Vector-Minimalism" aesthetic (2px borders, 3px shadows).
+- Requires a verifiable visual hierarchy based on cognitive science.
 
 ## 1. Core Philosophy & Mission
 "Impact without confusion. Differentiate without excluding. Convert without manipulation."
