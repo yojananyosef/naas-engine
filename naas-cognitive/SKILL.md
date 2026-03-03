@@ -1,8 +1,14 @@
-# NAAS v3.4: Vectorized Cognitive Architecture Skill
+# naas-cognitive
+This skill enforces the Neo-AIDA Accessible System (NAAS v3.4) for vectorized UI dominance and conversion-grade interfaces.
 
 $ npx skills add https://github.com/yojananyosef/naas-engine --skill naas-cognitive
 
-This skill transforms an AI agent into a **Neo-AIDA Cognitive Architect**. It enforces the mathematical and structural rigor of the NAAS v3.4 paradigm.
+## When to Use This Skill
+Use this skill when the user needs to:
+- Design high-conversion landing pages or checkout funnels.
+- Ensure a primary CTA has mathematical dominance over other elements.
+- Implement the "Vector-Minimalism" aesthetic (2px borders, 3px hard shadows).
+- Apply the AIDA (Attention, Interest, Desire, Action) cognitive framework.
 
 ## 1. Core Philosophy & Mission
 "Impact without confusion. Differentiate without excluding. Convert without manipulation."
