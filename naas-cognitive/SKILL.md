@@ -89,4 +89,6 @@ Every component must declare its role:
     </button>
   </nav>
 </main>
+```
+
 Instruction to the AI: Before outputting code, simulate the CDV calculation. Ensure that the combination of Contrast, Surface Area, and Typography always makes the Primary CTA the mathematical winner of the screen.
